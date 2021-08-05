@@ -279,7 +279,7 @@ router.put('/forgot-passwordlink',(req,res)=>{
       port: 587,
       auth: {
         user: 'sairampyla96@gmail.com',
-        pass: '880125@Sai'
+        pass: '880126@Sai'
       }
     });
     
@@ -292,9 +292,9 @@ router.put('/forgot-passwordlink',(req,res)=>{
         // text: 'That was easy!',
         html:`   
           <h2>Please click on the below link to reset your password </h2>
-          <p>"http://localhost:4100/resetPassword/${token}"</p> 
+          <p>"https://autoexpo-sai.herokuapp.com/resetPassword/${token}"</p> 
         `
-    };
+    }; 
      return Employee.updateOne({email:result.email},{resetLink:token}).then(result =>{
        if(!result){
          return res.json(responses.responseErrorJSON(400,"error","error"))
@@ -449,12 +449,6 @@ router.post('/', upload.single('file'),(req,res) =>{
               if(err){
                   console.log(err);
               }else{
-                  let obj = {"id":doc._id,"name":req.body.name,"email":req.body.email,"country":req.body.country}
-                  let jsonResult = [];
-                 jsonResult = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-                 jsonResult.push(obj);
-                 let srcdata = JSON.stringify(jsonResult);
-                 fs.writeFileSync(jsonPath, srcdata);
                 
         
                   let payLoad = {subject:doc._id}
@@ -517,14 +511,7 @@ router.put('/:id',(req,res)=>{
     Employee.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err ,doc)=>{
       if(!err) {
                    
-        let obj = {"id":req.params.id,"name":req.body.name,"email":req.body.email,"country":req.body.country}
-        let updatejsonResult = [];
-        updatejsonResult = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-        const findInd = updatejsonResult.filter((x) => x.id == req.params.id);
-
-           updatejsonResult[findInd] = obj;
-       let srcdata = JSON.stringify(updatejsonResult);
-       fs.writeFileSync(jsonPath, srcdata);
+      
         // res.send(doc);
         res.status(200).json({
           // token:token,
@@ -574,14 +561,7 @@ router.put('/:id',(req,res)=>{
              Employee.findByIdAndUpdate(req.params.id,{$set:emp},{new:true},(err ,doc)=>{
                  if(!err) {
                               
-                   let obj = {"id":req.params.id,"name":req.body.name,"email":req.body.email,"country":req.body.country}
-                   let updatejsonResult = [];
-                   updatejsonResult = JSON.parse(fs.readFileSync(jsonPath, "utf-8"));
-                   const findInd = updatejsonResult.filter((x) => x.id == req.params.id);
-         
-                      updatejsonResult[findInd] = obj;
-                  let srcdata = JSON.stringify(updatejsonResult);
-                  fs.writeFileSync(jsonPath, srcdata);
+                 
                  //  res.send(doc);
                  res.status(200).json({
                   // token:token,
