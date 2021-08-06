@@ -279,7 +279,7 @@ router.put('/forgot-passwordlink',(req,res)=>{
       port: 587,
       auth: {
         user: 'sairampyla96@gmail.com',
-        pass: '880125@Sai'
+        pass: '880126@Sai'
       }
     });
     
